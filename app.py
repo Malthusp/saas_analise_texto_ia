@@ -8,7 +8,7 @@ load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
     st.error("Chave da API Gemini não encontrada. Certifique-se de que a variável de ambiente GEMINI_API_KEY está definida no arquivo .env.")
-    st.stop() # Interrompe a execução do aplicativo se a chave não for encontrada
+    st.stop() 
 
 genai.configure(api_key=api_key)
 
@@ -25,17 +25,14 @@ if st.button("Analisar Texto"):
     if user_text:
         with st.spinner("Analisando... Por favor, aguarde."):
             try:
-                # 1. Análise de Sentimentos
                 prompt_sentimento = f"Qual o sentimento predominante (positivo, negativo, neutro ou misto) do seguinte texto? Responda de forma concisa em uma única palavra ou uma breve frase: '{user_text}'"
                 response_sentimento = model.generate_content(prompt_sentimento)
                 sentimento = response_sentimento.text.strip()
 
-                # 2. Resumo
                 prompt_resumo = f"Faça um resumo conciso do seguinte texto, com no máximo 3 frases: '{user_text}'"
                 response_resumo = model.generate_content(prompt_resumo)
                 resumo = response_resumo.text.strip()
 
-                # 3. Extração de Palavras-chave
                 prompt_keywords = f"Liste as 5 principais palavras-chave do seguinte texto, separadas por vírgulas: '{user_text}'"
                 response_keywords = model.generate_content(prompt_keywords)
                 keywords = response_keywords.text.strip()
@@ -57,4 +54,4 @@ st.sidebar.info(
     "Este é um SaaS de exemplo construído com Streamlit e a API Gemini para "
     "demonstrar processamento de dados com IA."
 )
-st.sidebar.text(f"Desenvolvido por Malthus ({os.getenv('GITHUB_USERNAME', 'SeuUsuarioGitHub')})") # Puxando do .env ou usando um fallback
+st.sidebar.text(f"Desenvolvido por Malthus ({os.getenv('GITHUB_USERNAME', 'SeuUsuarioGitHub')})") 
