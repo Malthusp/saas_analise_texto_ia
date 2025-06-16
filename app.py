@@ -54,4 +54,3 @@ st.sidebar.info(
     "Este é um SaaS de exemplo construído com Streamlit e a API Gemini para "
     "demonstrar processamento de dados com IA."
 )
-st.sidebar.text(f"Desenvolvido por Malthus ({os.getenv('GITHUB_USERNAME', 'SeuUsuarioGitHub')})") 
